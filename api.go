@@ -7,7 +7,7 @@ import (
 )
 
 // Simple dashboard server that serves transaction statistics via JSON API
-func main() {
+func api_main() {
 	http.HandleFunc("/stats", handleStats)
 	fmt.Println("Dashboard running on http://localhost:8080/stats")
 	http.ListenAndServe(":8080", nil)
