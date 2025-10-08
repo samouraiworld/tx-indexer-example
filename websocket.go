@@ -9,7 +9,7 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-func main_websocket() {
+func RunWebSocketExample() {
 	fmt.Println("🔗 Connecting to tx-indexer WebSocket...")
 
 	// Build WebSocket URL - replace localhost:8546 with your indexer's address
@@ -93,7 +93,11 @@ func main_websocket() {
 			// Extract payload and process transaction data
 			data := response["payload"]
 			dataBytes, _ := json.Marshal(data)
-			parsedData := parseTransactions(dataBytes)
+			parsedData, err := parseTransactions(dataBytes)
+			if err != nil {
+				log.Printf("Error parsing transactions: %v", err)
+				continue
+			}
 			displayTransactions(parsedData) // Show formatted transaction details
 		case "error":
 			// GraphQL query/subscription error
