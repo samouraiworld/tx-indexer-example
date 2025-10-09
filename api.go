@@ -45,7 +45,5 @@ func handleStats(w http.ResponseWriter, r *http.Request) {
 		"average_amount":     totalVolume / float64(len(sorted)),
 		"top_transactions":   sorted[:min(5, len(sorted))], // Top 5 transactions
 	}
-
-	// Set response headers for JSON API
 	json.NewEncoder(w).Encode(response)
 }
